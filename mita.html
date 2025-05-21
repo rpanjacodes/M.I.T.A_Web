@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Welcomer Bot</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to bottom, #ffb6c1, #ff69b4);
+      color: #333;
+    }
+
+    .navbar {
+      background-color: #ff4da6;
+      padding: 15px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: white;
+    }
+
+    .navbar a {
+      color: white;
+      margin: 0 10px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .hero {
+      text-align: center;
+      padding: 50px 20px;
+      background: rgba(255, 255, 255, 0.2);
+      backdrop-filter: blur(5px);
+    }
+
+    .hero h1 {
+      font-size: 40px;
+      margin-bottom: 10px;
+    }
+
+    .hero p {
+      font-size: 18px;
+      max-width: 600px;
+      margin: 0 auto 20px;
+    }
+
+    .hero img {
+      width: 200px;
+      margin-top: 20px;
+    }
+
+    .buttons a {
+      display: inline-block;
+      padding: 12px 20px;
+      margin: 10px;
+      background: #ff4da6;
+      color: white;
+      border-radius: 8px;
+      text-decoration: none;
+    }
+
+    .section {
+      padding: 40px 20px;
+      background: rgba(255, 255, 255, 0.3);
+      margin: 20px;
+      border-radius: 12px;
+    }
+
+    .accordion-item {
+      background: white;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      margin-bottom: 10px;
+    }
+
+    .accordion-header {
+      padding: 15px;
+      cursor: pointer;
+      background-color: #ffccdd;
+      font-weight: bold;
+    }
+
+    .accordion-content {
+      display: none;
+      padding: 15px;
+      background-color: #fff;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="navbar">
+    <div><strong>Welcomer</strong></div>
+    <div>
+      <a href="#">Home</a>
+      <a href="#">Commands</a>
+      <a href="#">Support</a>
+      <a href="#">Invite</a>
+    </div>
+  </div>
+
+  <div class="hero">
+    <h1>A bot for every server.</h1>
+    <p>Welcome new users with custom messages, enable automod, music, and more. Simple to set up and free to use!</p>
+    <div class="buttons">
+      <a href="#">Add to Discord</a>
+      <a href="#">Support Server</a>
+    </div>
+    <img src="https://upload.wikimedia.org/wikipedia/en/4/47/Hyouka_eru.png" alt="Anime Bot Girl">
+  </div>
+
+  <div class="section">
+    <h2>Features</h2>
+    <p>Explore what Welcomer can do for your server.</p>
+    <ul>
+      <li>Custom Welcome Messages</li>
+      <li>Auto Moderation & Anti-Spam</li>
+      <li>Music Track Display</li>
+    </ul>
+  </div>
+
+  <div class="section">
+    <h2>Commands (Tap to Expand)</h2>
+
+    <div class="accordion-item">
+      <div class="accordion-header">/welcome setup</div>
+      <div class="accordion-content">
+        Set up your welcome message for new members. Customize text, image, and embed.
+      </div>
+    </div>
+
+    <div class="accordion-item">
+      <div class="accordion-header">/automod enable</div>
+      <div class="accordion-content">
+        Enables auto-moderation for spam, bad words, raid protection.
+      </div>
+    </div>
+
+    <div class="accordion-item">
+      <div class="accordion-header">/music track</div>
+      <div class="accordion-content">
+        Shows your current Spotify or music track in a stylish card.
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    document.querySelectorAll('.accordion-header').forEach(header => {
+      header.addEventListener('click', () => {
+        const content = header.nextElementSibling;
+        content.style.display = content.style.display === 'block' ? 'none' : 'block';
+      });
+    });
+  </script>
+
+</body>
+</html>
