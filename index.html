@@ -9,7 +9,10 @@
     body {
       margin: 0;
       font-family: 'Segoe UI', sans-serif;
-      background: linear-gradient(to bottom, #ffb6c1, #ff69b4);
+      /* To use a transparent image background, REPLACE the line below */
+      background: url('https://cdn.discordapp.com/attachments/1359128965444272324/1374641979018711111/Crazy.Mita.600.4379960.jpg?ex=682eca9b&is=682d791b&hm=c892661d8d7777ef214e7eeed45b5fa684062a30044b9c9aa4f5a593facafdb0&') repeat;
+      /* To use pink gradient instead, comment the above line and uncomment the below one */
+      /* background: linear-gradient(to bot, #ff69b4); */
       color: #333;
     }
 
@@ -92,27 +95,32 @@
       padding: 15px;
       background-color: #fff;
     }
+
+    h3 {
+      margin-top: 30px;
+      color: #c70068;
+    }
   </style>
 </head>
 <body>
 
   <div class="navbar">
-    <div><strong>M.I.T.A Bot</strong></div>
+    <div><strong id="botName">M.I.T.A Bot</strong></div>
     <div>
       <a href="#">Home</a>
       <a href="#">Commands</a>
-      <a href="#">Support</a>
-      <a href="#">Invite</a>
+      <a href="#" id="supportLink">Support</a>
+      <a href="#" id="inviteLink">Invite</a>
     </div>
   </div>
 
   <div class="hero">
     <img id="botAvatar" src="" alt="Bot Avatar">
-    <h1 id="botName">M.I.T.A Bot</h1>
+    <h1 id="botNameHero">M.I.T.A Bot</h1>
     <p>Welcome new users with custom messages, chat features, nickname control, counting, and more.</p>
     <div class="buttons">
-      <a id="inviteLink" href="#">Add to Discord</a>
-      <a id="supportLink" href="#">Support Server</a>
+      <a id="inviteLinkBtn" href="#">Add to Discord</a>
+      <a id="supportLinkBtn" href="#">Support Server</a>
     </div>
   </div>
 
@@ -130,44 +138,49 @@
 
   <div class="section">
     <h2>Commands (Tap to Expand)</h2>
-
-    <div class="accordion-item">
-      <div class="accordion-header">/welcome setup</div>
-      <div class="accordion-content">
-        Set up your welcome message for new members. Customize text, image, and embed.
-      </div>
-    </div>
-
-    <div class="accordion-item">
-      <div class="accordion-header">/automod enable</div>
-      <div class="accordion-content">
-        Enables auto-moderation for spam, bad words, raid protection.
-      </div>
-    </div>
-
-    <div class="accordion-item">
-      <div class="accordion-header">/music track</div>
-      <div class="accordion-content">
-        Shows your current Spotify or music track in a stylish card.
-      </div>
-    </div>
-
+    <div id="commandsContainer"></div>
   </div>
 
   <script>
-    document.querySelectorAll('.accordion-header').forEach(header => {
-      header.addEventListener('click', () => {
-        const content = header.nextElementSibling;
-        content.style.display = content.style.display === 'block' ? 'none' : 'block';
-      });
-    });
-
-    // Load Config
     window.addEventListener('DOMContentLoaded', () => {
-      document.getElementById("botAvatar").src = config.botAvatar;
+      // Set bot config values
       document.getElementById("botName").textContent = config.botName;
+      document.getElementById("botNameHero").textContent = config.botName;
+      document.getElementById("botAvatar").src = config.botAvatar;
       document.getElementById("inviteLink").href = config.inviteURL;
       document.getElementById("supportLink").href = config.supportURL;
+      document.getElementById("inviteLinkBtn").href = config.inviteURL;
+      document.getElementById("supportLinkBtn").href = config.supportURL;
+
+      // Create command sections
+      const container = document.getElementById("commandsContainer");
+
+      config.commands.forEach(category => {
+        const sectionHeader = document.createElement("h3");
+        sectionHeader.textContent = category.category;
+        container.appendChild(sectionHeader);
+
+        category.commands.forEach(cmd => {
+          const item = document.createElement("div");
+          item.className = "accordion-item";
+
+          const header = document.createElement("div");
+          header.className = "accordion-header";
+          header.textContent = cmd.name;
+
+          const content = document.createElement("div");
+          content.className = "accordion-content";
+          content.textContent = cmd.description;
+
+          header.addEventListener("click", () => {
+            content.style.display = content.style.display === "block" ? "none" : "block";
+          });
+
+          item.appendChild(header);
+          item.appendChild(content);
+          container.appendChild(item);
+        });
+      });
     });
   </script>
 
